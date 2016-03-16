@@ -181,6 +181,10 @@ int main(int argc, char** argv)
 
   LOG_IF(!comm.rank(), INFO) << "Beginning computation, benchmark timer started";
 
+  //Relable the ids
+  conn::graphGen::permuteVectorIds(edgeList);
+  LOG_IF(!comm.rank(), INFO) << "Vertex ids permuted";
+
   //Call the graph reducer function
   if(bfsIterations > 0) conn::graphGen::reduceVertexIds(edgeList, uniqueVertexList, comm);
 
