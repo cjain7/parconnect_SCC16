@@ -71,7 +71,7 @@ int main(int argc, char** argv)
   cmd.defineOption("input", "dbg or kronecker or generic", ArgvParser::OptionRequiresValue | ArgvParser::OptionRequired);
   cmd.defineOption("file", "input file", ArgvParser::OptionRequiresValue);
   cmd.defineOption("scale", "scale of the graph", ArgvParser::OptionRequiresValue);
-  cmd.defineOption("bfsiter", "number of BFS iterations to execute at the start, default is 1", ArgvParser::OptionRequiresValue);
+  cmd.defineOption("bfsiter", "number of BFS iterations to execute at the start, default is 0", ArgvParser::OptionRequiresValue);
 
   int result = cmd.parse(argc, argv);
 
@@ -96,7 +96,7 @@ int main(int argc, char** argv)
   LOG_IF(!comm.rank(), INFO) << "Generating graph";
 
   //Read number of bfs iterations
-  std::size_t bfsIterations = 1;  //Default
+  std::size_t bfsIterations = 0;  //Default
 
   if(cmd.foundOption("bfsiter"))
     bfsIterations = std::stoi(cmd.optionValue("bfsiter")); 

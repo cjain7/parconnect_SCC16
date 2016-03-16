@@ -39,7 +39,6 @@
 #include "mxx_extra/sort.hpp"
 #include "mxx/comm.hpp"
 #include "extutils/logging.hpp"
-#include "extutils/prettyprint.hpp"
 
 namespace conn 
 {
@@ -53,7 +52,7 @@ namespace conn
      * @tparam[in]  DOUBLING      controls whether pointer doubling would be executed or not, 'ON' by default.
      * @tparam[in]  OPTIMIZATION  optimization level for benchmarking, use loadbalanced for the best version 
      */
-    template<typename nIdType = uint64_t, uint8_t DOUBLING = lever::ON, uint8_t OPTIMIZATION = opt_level::loadbalanced>
+    template<typename nIdType = uint64_t, uint8_t DOUBLING = lever::OFF, uint8_t OPTIMIZATION = opt_level::loadbalanced>
     class ccl 
     {
       public:
