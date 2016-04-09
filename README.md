@@ -40,3 +40,5 @@ Inside the build directory,
 ```sh
 mpirun -np <COUNT OF PROCESSES> ./bin/<EXECUTABLE> <ARGUMENTS>
 ```
+
+You can check the description of command line arguments using -h help option.
