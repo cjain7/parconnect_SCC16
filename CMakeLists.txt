@@ -3,6 +3,20 @@ cmake_minimum_required(VERSION 2.6)
 # project settings
 project(parConnect)
 
+#### If compiling on NERSC Cray cluster, specify the compilers
+#SET(CMAKE_CXX_COMPILER /opt/cray/craype/2.5.1/bin/CC)
+#SET(CMAKE_C_COMPILER /opt/cray/craype/2.5.1/bin/cc)
+#SET(BUILD_SHARED_LIBS "OFF")
+
+####Configurale option for turning on Benchmarking
+
+OPTION(BENCHMARK_ENABLE_CONN "Turn on/off the benchmarking" OFF)
+if(BENCHMARK_ENABLE_CONN)
+  add_definitions(-DBENCHMARK_CONN)
+endif(BENCHMARK_ENABLE_CONN)
+
+
+
 ##### General Compilation Settings
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --std=c++11  -Drestrict=__restrict__  -ffast-math -DGRAPH_GENERATOR_MPI -DGRAPHGEN_DISTRIBUTED_MEMORY")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g -O0")

@@ -220,7 +220,9 @@ namespace conn
             auto end = tupleVector.end();
 
             //Log the min, mean and max count of active tuples across ranks
-            //printWorkLoad(mid, end, comm);
+#ifdef BENCHMARK_CONN
+            printWorkLoad(mid, end, comm);
+#endif
 
             //Update Pn layer (Explore neighbors of a node and find potential partition candidates
             updatePn(mid, tupleVector.end());
