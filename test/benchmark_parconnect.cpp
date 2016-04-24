@@ -90,8 +90,7 @@ int main(int argc, char** argv)
   //Declare a edgeList vector to save edges
   std::vector< std::pair<vertexIdType, vertexIdType> > edgeList;
 
-  //Initialize the distributed vector for saving unique vertices
-  std::vector<vertexIdType> uniqueVertexList;
+  std::size_t nVertices;
 
   LOG_IF(!comm.rank(), INFO) << "Generating graph";
 
@@ -186,10 +185,9 @@ int main(int argc, char** argv)
   LOG_IF(!comm.rank(), INFO) << "Vertex ids permuted";
 
   //Call the graph reducer function
-  if(bfsIterations > 0) conn::graphGen::reduceVertexIds(edgeList, uniqueVertexList, comm);
+  if(bfsIterations > 0) conn::graphGen::reduceVertexIds(edgeList, nVertices, comm);
 
   //Count of vertices, edges in the reduced graph
-  std::size_t nVertices = conn::graphGen::globalSizeOfVector(uniqueVertexList, comm);
   std::size_t nEdges = conn::graphGen::globalSizeOfVector(edgeList, comm);
 
   if(bfsIterations > 0) 
